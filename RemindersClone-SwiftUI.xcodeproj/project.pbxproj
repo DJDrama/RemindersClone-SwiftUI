@@ -8,23 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		D250551D2CE1DC0900BB387E /* RemindersClone_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D250551C2CE1DC0900BB387E /* RemindersClone_SwiftUIApp.swift */; };
-		D250551F2CE1DC0900BB387E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D250551E2CE1DC0900BB387E /* ContentView.swift */; };
 		D25055212CE1DC0C00BB387E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D25055202CE1DC0C00BB387E /* Assets.xcassets */; };
 		D25055242CE1DC0C00BB387E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D25055232CE1DC0C00BB387E /* Preview Assets.xcassets */; };
 		D250552C2CE1DC2E00BB387E /* MyListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D250552B2CE1DC2E00BB387E /* MyListScreen.swift */; };
 		D250552E2CE1DD2100BB387E /* AddMyListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D250552D2CE1DD2100BB387E /* AddMyListScreen.swift */; };
 		D25055312CE1DE6600BB387E /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25055302CE1DE6600BB387E /* ColorPickerView.swift */; };
+		D25055342CE1E38900BB387E /* MyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25055332CE1E38900BB387E /* MyList.swift */; };
+		D25055362CE1E4C700BB387E /* PreviewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25055352CE1E4C700BB387E /* PreviewContainer.swift */; };
+		D25055392CE1F02C00BB387E /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25055382CE1F02C00BB387E /* Color+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D25055192CE1DC0900BB387E /* RemindersClone-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RemindersClone-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D250551C2CE1DC0900BB387E /* RemindersClone_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersClone_SwiftUIApp.swift; sourceTree = "<group>"; };
-		D250551E2CE1DC0900BB387E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D25055202CE1DC0C00BB387E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D25055232CE1DC0C00BB387E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D250552B2CE1DC2E00BB387E /* MyListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListScreen.swift; sourceTree = "<group>"; };
 		D250552D2CE1DD2100BB387E /* AddMyListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMyListScreen.swift; sourceTree = "<group>"; };
 		D25055302CE1DE6600BB387E /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
+		D25055332CE1E38900BB387E /* MyList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyList.swift; sourceTree = "<group>"; };
+		D25055352CE1E4C700BB387E /* PreviewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewContainer.swift; sourceTree = "<group>"; };
+		D25055382CE1F02C00BB387E /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,10 +61,11 @@
 		D250551B2CE1DC0900BB387E /* RemindersClone-SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				D25055372CE1F01D00BB387E /* Extensions */,
+				D25055322CE1E37A00BB387E /* Models */,
 				D250552F2CE1DE5800BB387E /* Views */,
 				D250552A2CE1DC2200BB387E /* Screens */,
 				D250551C2CE1DC0900BB387E /* RemindersClone_SwiftUIApp.swift */,
-				D250551E2CE1DC0900BB387E /* ContentView.swift */,
 				D25055202CE1DC0C00BB387E /* Assets.xcassets */,
 				D25055222CE1DC0C00BB387E /* Preview Content */,
 			);
@@ -71,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				D25055232CE1DC0C00BB387E /* Preview Assets.xcassets */,
+				D25055352CE1E4C700BB387E /* PreviewContainer.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -90,6 +96,22 @@
 				D25055302CE1DE6600BB387E /* ColorPickerView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		D25055322CE1E37A00BB387E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D25055332CE1E38900BB387E /* MyList.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D25055372CE1F01D00BB387E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D25055382CE1F02C00BB387E /* Color+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,11 +184,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D250551F2CE1DC0900BB387E /* ContentView.swift in Sources */,
 				D250552C2CE1DC2E00BB387E /* MyListScreen.swift in Sources */,
 				D250551D2CE1DC0900BB387E /* RemindersClone_SwiftUIApp.swift in Sources */,
+				D25055392CE1F02C00BB387E /* Color+Extensions.swift in Sources */,
 				D250552E2CE1DD2100BB387E /* AddMyListScreen.swift in Sources */,
 				D25055312CE1DE6600BB387E /* ColorPickerView.swift in Sources */,
+				D25055362CE1E4C700BB387E /* PreviewContainer.swift in Sources */,
+				D25055342CE1E38900BB387E /* MyList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
