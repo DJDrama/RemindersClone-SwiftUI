@@ -11,6 +11,23 @@ import SwiftData
 struct MyListScreen: View {
     @Query private var myLists: [MyList]
     @State private var isPresented: Bool = false
+    @State private var selectedList: MyList?
+    @State private var actionSheet: MyListScreenSheets?
+    
+    enum MyListScreenSheets: Identifiable {
+        var id: Int {
+            switch self {
+                
+            case .newList:
+                return 1
+            case .editList(let myList):
+                return myList.hashValue
+            }
+        }
+        
+        case newList
+        case editList(MyList)
+    }
     
     var body: some View {
         List {
@@ -18,32 +35,43 @@ struct MyListScreen: View {
                 .font(.largeTitle)
                 .bold()
             ForEach(myLists) {myList in
-                NavigationLink {
-                    MyListDetailScreen(myList: myList)
-                } label: {
-                    HStack {
-                        Image(systemName: "line.3.horizontal.circle.fill")
-                            .font(.system(size: 32))
-                            .foregroundStyle(Color.init(hex: myList.colorCode))
-                        
-                        Text(myList.name)
-                    }
+                NavigationLink(value: myList) {
+                    MyListCellView(myList: myList)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            selectedList = myList
+                        }
+                        .onLongPressGesture(minimumDuration: 0.5, perform: {
+                            actionSheet = .editList(myList)
+                        })
                 }
             }
             
             Button(action: {
-                isPresented = true
+                actionSheet = .newList
             }, label: {
                 Text("Add List")
                     .foregroundStyle(.blue)
                     .frame(maxWidth: .infinity, alignment: .trailing)
             }).listRowSeparator(.hidden)
-        }.listStyle(.plain)
-            .sheet(isPresented: $isPresented, content: {
+        }
+        .navigationDestination(item: $selectedList, destination: { myList in
+            MyListDetailScreen(myList: myList)
+        })
+        .listStyle(.plain)
+        .sheet(item: $actionSheet, content: { _actionSheet in
+            switch _actionSheet {
+            case .newList:
                 NavigationStack{
                     AddMyListScreen()
                 }
-            })
+            case .editList(let myList):
+                NavigationStack{
+                    AddMyListScreen(myList: myList)
+                }
+            }
+        })
+            
     }
 }
 
@@ -52,3 +80,5 @@ struct MyListScreen: View {
         MyListScreen()
     }.modelContainer(previewContainer)
 }
+
+

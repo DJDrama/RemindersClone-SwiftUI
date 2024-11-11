@@ -13,6 +13,8 @@ struct AddMyListScreen: View {
     @State private var color: Color = .blue
     @State private var listName: String = ""
     
+    var myList: MyList? = nil
+    
     var body: some View {
         VStack {
             Image(systemName: "line.3.horizontal.circle.fill")
@@ -25,6 +27,12 @@ struct AddMyListScreen: View {
             
             ColorPickerView(selectedColor: $color)
         }
+        .onAppear(perform: {
+            if let myList {
+                listName = myList.name
+                color = Color(hex: myList.colorCode)
+            }
+        })
         .navigationTitle("New List")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -35,9 +43,15 @@ struct AddMyListScreen: View {
             }
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Done"){
-                    guard let hex = color.toHex() else { return }
-                    let myList = MyList(name: listName, colorCode: hex)
-                    context.insert(myList)
+                    if let myList {
+                        // update
+                        myList.name = listName
+                        myList.colorCode = color.toHex() ?? ""
+                    }else{
+                        guard let hex = color.toHex() else { return }
+                        let myList = MyList(name: listName, colorCode: hex)
+                        context.insert(myList)
+                    }
                     dismiss()
                 }
             }
