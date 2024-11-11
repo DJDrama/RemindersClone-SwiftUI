@@ -25,7 +25,18 @@ struct MyListDetailScreen: View {
     var body: some View {
         VStack {
             List(myList.reminders) { reminder in
-                Text(reminder.title)
+                ReminderCellView(reminder: reminder, isSelected: false,
+                                 onEvent: { event in
+                    switch event {
+                        
+                    case .onChecked(let reminder, let checked):
+                        print("onChecked")
+                    case .onSelect(let reminder):
+                        print("onSelect")
+                    case .onInfoSelected(let reminder):
+                        print("onInfoSelected")
+                    }
+                })
             }
             
             Spacer()

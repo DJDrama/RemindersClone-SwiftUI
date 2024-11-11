@@ -19,6 +19,7 @@
 		D250553B2CE1F27700BB387E /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D250553A2CE1F27700BB387E /* Reminder.swift */; };
 		D250553D2CE1F6DD00BB387E /* MyListDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D250553C2CE1F6DD00BB387E /* MyListDetailScreen.swift */; };
 		D250553F2CE1F9F700BB387E /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D250553E2CE1F9F700BB387E /* String+Extensions.swift */; };
+		D25055412CE1FD7500BB387E /* ReminderCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25055402CE1FD7500BB387E /* ReminderCellView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		D250553A2CE1F27700BB387E /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		D250553C2CE1F6DD00BB387E /* MyListDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListDetailScreen.swift; sourceTree = "<group>"; };
 		D250553E2CE1F9F700BB387E /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		D25055402CE1FD7500BB387E /* ReminderCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderCellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				D25055302CE1DE6600BB387E /* ColorPickerView.swift */,
+				D25055402CE1FD7500BB387E /* ReminderCellView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 				D250551D2CE1DC0900BB387E /* RemindersClone_SwiftUIApp.swift in Sources */,
 				D25055392CE1F02C00BB387E /* Color+Extensions.swift in Sources */,
 				D250552E2CE1DD2100BB387E /* AddMyListScreen.swift in Sources */,
+				D25055412CE1FD7500BB387E /* ReminderCellView.swift in Sources */,
 				D25055312CE1DE6600BB387E /* ColorPickerView.swift in Sources */,
 				D25055362CE1E4C700BB387E /* PreviewContainer.swift in Sources */,
 				D250553D2CE1F6DD00BB387E /* MyListDetailScreen.swift in Sources */,
