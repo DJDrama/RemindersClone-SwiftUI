@@ -18,12 +18,16 @@ struct MyListScreen: View {
                 .font(.largeTitle)
                 .bold()
             ForEach(myLists) {myList in
-                HStack {
-                    Image(systemName: "line.3.horizontal.circle.fill")
-                        .font(.system(size: 32))
-                        .foregroundStyle(Color.init(hex: myList.colorCode))
-                    
-                    Text(myList.name)
+                NavigationLink {
+                    MyListDetailScreen(myList: myList)
+                } label: {
+                    HStack {
+                        Image(systemName: "line.3.horizontal.circle.fill")
+                            .font(.system(size: 32))
+                            .foregroundStyle(Color.init(hex: myList.colorCode))
+                        
+                        Text(myList.name)
+                    }
                 }
             }
             
