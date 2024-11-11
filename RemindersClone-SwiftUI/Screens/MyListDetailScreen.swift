@@ -30,7 +30,7 @@ struct MyListDetailScreen: View {
     
     var body: some View {
         VStack {
-            List(myList.reminders) { reminder in
+            List(myList.reminders.filter { !$0.isCompleted } ) { reminder in
                 ReminderCellView(reminder: reminder, isSelected: isReminderSelected(reminder),
                                  onEvent: { event in
                     switch event {
@@ -66,6 +66,7 @@ struct MyListDetailScreen: View {
             }
             Button("Done"){
                 saveReminder()
+                title = ""
             }//.disabled(!isFormValid) <-- bug in swiftui?
         }
         .sheet(isPresented: $showReminderEditScreen, content: {
