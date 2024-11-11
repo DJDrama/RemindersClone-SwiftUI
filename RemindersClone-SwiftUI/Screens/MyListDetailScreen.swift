@@ -12,6 +12,8 @@ struct MyListDetailScreen: View {
     let myList: MyList
     @State private var title: String = ""
     @State private var isNewReminderAlertPresented: Bool = false
+    @State private var selectedReminder: Reminder?
+    @State private var showReminderEditScreen: Bool = false
     
     private var isFormValid: Bool {
         !title.isEmptyOrWhitespace
@@ -22,19 +24,24 @@ struct MyListDetailScreen: View {
         myList.reminders.append(reminder)
     }
     
+    private func isReminderSelected(_ reminder: Reminder) -> Bool {
+        return reminder.persistentModelID == selectedReminder?.persistentModelID
+    }
+    
     var body: some View {
         VStack {
             List(myList.reminders) { reminder in
-                ReminderCellView(reminder: reminder, isSelected: false,
+                ReminderCellView(reminder: reminder, isSelected: isReminderSelected(reminder),
                                  onEvent: { event in
                     switch event {
                         
                     case .onChecked(let reminder, let checked):
-                        print("onChecked")
+                        reminder.isCompleted = checked
                     case .onSelect(let reminder):
-                        print("onSelect")
+                        selectedReminder = reminder
                     case .onInfoSelected(let reminder):
-                        print("onInfoSelected")
+                        showReminderEditScreen = true
+                        selectedReminder = reminder
                     }
                 })
             }
@@ -61,6 +68,13 @@ struct MyListDetailScreen: View {
                 saveReminder()
             }//.disabled(!isFormValid) <-- bug in swiftui?
         }
+        .sheet(isPresented: $showReminderEditScreen, content: {
+            if let selectedReminder {
+                NavigationStack {
+                    ReminderEditScreen(reminder: selectedReminder)
+                }
+            }
+        })
     }
 }
 
