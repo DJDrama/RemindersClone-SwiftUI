@@ -8,11 +8,37 @@
 import SwiftUI
 import SwiftData
 
+enum ReminderStatsType: Int, Identifiable {
+    var id: Int {
+        self.rawValue
+    }
+    var title: String {
+        switch self {
+            
+        case .today:
+            "Today"
+        case .scheduled:
+            "Scheduled"
+        case .all:
+            "All"
+        case .completed:
+            "Completed"
+        }
+    }
+    case today
+    case scheduled
+    case all
+    case completed
+}
+
 struct MyListScreen: View {
     @Query private var myLists: [MyList]
     @State private var isPresented: Bool = false
     @State private var selectedList: MyList?
     @State private var actionSheet: MyListScreenSheets?
+    @State private var reminderStatsType: ReminderStatsType?
+    
+    @Query private var reminders: [Reminder]
     
     enum MyListScreenSheets: Identifiable {
         var id: Int {
@@ -29,11 +55,71 @@ struct MyListScreen: View {
         case editList(MyList)
     }
     
+    private var inCompleteReminders: [Reminder] {
+        reminders.filter { reminder in !reminder.isCompleted }
+    }
+    
+    private var todayReminders: [Reminder] {
+        reminders.filter {
+            guard let reminderDate = $0.reminderDate else {
+                return false
+            }
+            return reminderDate.isToday && !$0.isCompleted
+        }
+    }
+    
+    private var scheduledReminders: [Reminder] {
+        reminders.filter {
+            $0.reminderDate != nil && !$0.isCompleted
+        }
+    }
+    
+    private var completedReminders: [Reminder] {
+        reminders.filter{
+            $0.isCompleted
+        }
+    }
+    
+    private func reminders(for type: ReminderStatsType) -> [Reminder] {
+        switch type {
+        case .today:
+            return todayReminders
+        case .scheduled:
+            return scheduledReminders
+        case .all:
+            return reminders
+        case .completed:
+            return completedReminders
+        }
+    }
+    
     var body: some View {
         List {
             Text("My Lists")
                 .font(.largeTitle)
                 .bold()
+            VStack {
+                HStack {
+                    ReminderStatsView(icon: "calendar", title: "Today", count: todayReminders.count)
+                        .onTapGesture {
+                            reminderStatsType = .today
+                        }
+                    ReminderStatsView(icon: "calendar.circle.fill", title: "Scheduled", count: scheduledReminders.count)
+                        .onTapGesture {
+                            reminderStatsType = .scheduled
+                        }
+                }
+                HStack {
+                    ReminderStatsView(icon: "tray.circle.fill", title: "All", count: reminders.count)
+                        .onTapGesture {
+                            reminderStatsType = .all
+                        }
+                    ReminderStatsView(icon: "checkmark.circle.fill", title: "Completed", count: completedReminders.count)
+                        .onTapGesture {
+                            reminderStatsType = .completed
+                        }
+                }
+            }
             ForEach(myLists) {myList in
                 NavigationLink(value: myList) {
                     MyListCellView(myList: myList)
@@ -58,6 +144,14 @@ struct MyListScreen: View {
         .navigationDestination(item: $selectedList, destination: { myList in
             MyListDetailScreen(myList: myList)
         })
+        .navigationDestination(item: $reminderStatsType, destination: { reminderStatsType in
+            NavigationStack {
+                List(reminders(for: reminderStatsType)){ reminder in
+                    Text(reminder.title)
+                }.navigationTitle(reminderStatsType.title)
+                //ReminderListView(reminders: reminders(for: reminderStatsType))
+            }
+        })
         .listStyle(.plain)
         .sheet(item: $actionSheet, content: { _actionSheet in
             switch _actionSheet {
@@ -71,7 +165,7 @@ struct MyListScreen: View {
                 }
             }
         })
-            
+        
     }
 }
 

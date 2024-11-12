@@ -24,6 +24,7 @@
 		D25055452CE2146F00BB387E /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25055442CE2146F00BB387E /* Date+Extensions.swift */; };
 		D25055482CE2168200BB387E /* Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25055472CE2168200BB387E /* Delay.swift */; };
 		D250554A2CE243AD00BB387E /* MyListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25055492CE243AD00BB387E /* MyListCellView.swift */; };
+		D250554C2CE3284400BB387E /* ReminderStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D250554B2CE3284400BB387E /* ReminderStatsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		D25055442CE2146F00BB387E /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		D25055472CE2168200BB387E /* Delay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delay.swift; sourceTree = "<group>"; };
 		D25055492CE243AD00BB387E /* MyListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListCellView.swift; sourceTree = "<group>"; };
+		D250554B2CE3284400BB387E /* ReminderStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderStatsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				D25055302CE1DE6600BB387E /* ColorPickerView.swift */,
 				D25055402CE1FD7500BB387E /* ReminderCellView.swift */,
 				D25055492CE243AD00BB387E /* MyListCellView.swift */,
+				D250554B2CE3284400BB387E /* ReminderStatsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 			files = (
 				D250553F2CE1F9F700BB387E /* String+Extensions.swift in Sources */,
 				D250552C2CE1DC2E00BB387E /* MyListScreen.swift in Sources */,
+				D250554C2CE3284400BB387E /* ReminderStatsView.swift in Sources */,
 				D250551D2CE1DC0900BB387E /* RemindersClone_SwiftUIApp.swift in Sources */,
 				D25055452CE2146F00BB387E /* Date+Extensions.swift in Sources */,
 				D25055432CE2058000BB387E /* ReminderEditScreen.swift in Sources */,
