@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ReminderListView: View {
     let reminders: [Reminder]
@@ -13,7 +14,8 @@ struct ReminderListView: View {
     @State private var selectedReminder: Reminder?=nil
     @State private var showReminderEditScreen: Bool = false
     
-    private let delay = Delay()
+    @State private var reminderIdAndDelay: [PersistentIdentifier: Delay] = [:]
+
     
     private func deleteReminder(_ indexSet: IndexSet) {
         guard let index = indexSet.last else { return }
@@ -27,10 +29,20 @@ struct ReminderListView: View {
                 ReminderCellView(reminder: reminder) { event in
                     switch event {
                     case .onChecked(let reminder, let checked):
-                        delay.cancel()
-                        delay.performWork {
-                            reminder.isCompleted = checked
+                        // get the delay from the dictionary
+                        var delay = reminderIdAndDelay[reminder.persistentModelID]
+                        if let delay {
+                            // cancel
+                            delay.cancel()
+                            reminderIdAndDelay.removeValue(forKey: reminder.persistentModelID)
+                        } else {
+                            delay = Delay()
+                            reminderIdAndDelay[reminder.persistentModelID] = delay
+                            delay?.performWork {
+                                reminder.isCompleted = checked
+                            }
                         }
+                        
                     case .onSelect(let reminder):
                         selectedReminder = reminder
                     }

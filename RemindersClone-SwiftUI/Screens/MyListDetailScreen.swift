@@ -17,8 +17,6 @@ struct MyListDetailScreen: View {
     
     @Environment(\.modelContext) private var context
     
-    private let delay = Delay(seconds: 1)
-    
     private var isFormValid: Bool {
         !title.isEmptyOrWhitespace
     }
