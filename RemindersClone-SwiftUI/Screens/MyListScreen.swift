@@ -87,7 +87,7 @@ struct MyListScreen: View {
         case .scheduled:
             return scheduledReminders
         case .all:
-            return reminders
+            return inCompleteReminders
         case .completed:
             return completedReminders
         }
@@ -95,9 +95,6 @@ struct MyListScreen: View {
     
     var body: some View {
         List {
-            Text("My Lists")
-                .font(.largeTitle)
-                .bold()
             VStack {
                 HStack {
                     ReminderStatsView(icon: "calendar", title: "Today", count: todayReminders.count)
@@ -110,7 +107,7 @@ struct MyListScreen: View {
                         }
                 }
                 HStack {
-                    ReminderStatsView(icon: "tray.circle.fill", title: "All", count: reminders.count)
+                    ReminderStatsView(icon: "tray.circle.fill", title: "All", count: inCompleteReminders.count)
                         .onTapGesture {
                             reminderStatsType = .all
                         }
@@ -141,16 +138,13 @@ struct MyListScreen: View {
                     .frame(maxWidth: .infinity, alignment: .trailing)
             }).listRowSeparator(.hidden)
         }
+        .navigationTitle("My Lists")
         .navigationDestination(item: $selectedList, destination: { myList in
             MyListDetailScreen(myList: myList)
         })
         .navigationDestination(item: $reminderStatsType, destination: { reminderStatsType in
-            NavigationStack {
-                List(reminders(for: reminderStatsType)){ reminder in
-                    Text(reminder.title)
-                }.navigationTitle(reminderStatsType.title)
-                //ReminderListView(reminders: reminders(for: reminderStatsType))
-            }
+            ReminderListView(reminders: reminders(for: reminderStatsType))
+                .navigationTitle(reminderStatsType.title)
         })
         .listStyle(.plain)
         .sheet(item: $actionSheet, content: { _actionSheet in
@@ -169,10 +163,18 @@ struct MyListScreen: View {
     }
 }
 
-#Preview { @MainActor in
+#Preview("Light Mode") { @MainActor in
     NavigationStack {
         MyListScreen()
     }.modelContainer(previewContainer)
 }
 
+
+
+#Preview("Dark Mode") { @MainActor in
+    NavigationStack {
+        MyListScreen()
+    }.modelContainer(previewContainer)
+        .environment(\.colorScheme, .dark)
+}
 

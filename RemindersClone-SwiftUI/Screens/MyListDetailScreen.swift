@@ -40,27 +40,7 @@ struct MyListDetailScreen: View {
     
     var body: some View {
         VStack {
-            List{
-                ForEach(myList.reminders.filter { !$0.isCompleted } ) { reminder in
-                    ReminderCellView(reminder: reminder, isSelected: isReminderSelected(reminder),
-                                     onEvent: { event in
-                        switch event {
-                            
-                        case .onChecked(let reminder, let checked):
-                            // cancel pending tasks
-                            delay.cancel()
-                            delay.performWork {
-                                reminder.isCompleted = checked
-                            }
-                        case .onSelect(let reminder):
-                            selectedReminder = reminder
-                        case .onInfoSelected(let reminder):
-                            showReminderEditScreen = true
-                            selectedReminder = reminder
-                        }
-                    })
-                }.onDelete(perform: deleteReminder)
-            }
+            ReminderListView(reminders: myList.reminders.filter { !$0.isCompleted })
             Spacer()
             Button(action: {
                 isNewReminderAlertPresented = true
