@@ -26,6 +26,7 @@
 		D250554A2CE243AD00BB387E /* MyListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25055492CE243AD00BB387E /* MyListCellView.swift */; };
 		D250554C2CE3284400BB387E /* ReminderStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D250554B2CE3284400BB387E /* ReminderStatsView.swift */; };
 		D250554E2CE32D6F00BB387E /* ReminderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D250554D2CE32D6F00BB387E /* ReminderListView.swift */; };
+		D25055512CE3392000BB387E /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25055502CE3392000BB387E /* NotificationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		D25055492CE243AD00BB387E /* MyListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListCellView.swift; sourceTree = "<group>"; };
 		D250554B2CE3284400BB387E /* ReminderStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderStatsView.swift; sourceTree = "<group>"; };
 		D250554D2CE32D6F00BB387E /* ReminderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListView.swift; sourceTree = "<group>"; };
+		D25055502CE3392000BB387E /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 		D250551B2CE1DC0900BB387E /* RemindersClone-SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				D250554F2CE3391500BB387E /* Managers */,
 				D25055462CE2167600BB387E /* Utils */,
 				D25055372CE1F01D00BB387E /* Extensions */,
 				D25055322CE1E37A00BB387E /* Models */,
@@ -150,6 +153,14 @@
 				D25055472CE2168200BB387E /* Delay.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		D250554F2CE3391500BB387E /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				D25055502CE3392000BB387E /* NotificationManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +245,7 @@
 				D25055412CE1FD7500BB387E /* ReminderCellView.swift in Sources */,
 				D25055312CE1DE6600BB387E /* ColorPickerView.swift in Sources */,
 				D250554A2CE243AD00BB387E /* MyListCellView.swift in Sources */,
+				D25055512CE3392000BB387E /* NotificationManager.swift in Sources */,
 				D25055362CE1E4C700BB387E /* PreviewContainer.swift in Sources */,
 				D250553D2CE1F6DD00BB387E /* MyListDetailScreen.swift in Sources */,
 				D25055482CE2168200BB387E /* Delay.swift in Sources */,
